@@ -1,4 +1,4 @@
 export type TMessage = {
-    text: string
-    type: "send" | "recive"
+  text: string
+  type: 'send' | 'recive'
 }

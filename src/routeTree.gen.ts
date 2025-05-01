@@ -18,6 +18,7 @@ import { Route as AuthenticatedIndexImport } from './routes/_authenticated/index
 import { Route as authSignInImport } from './routes/(auth)/sign-in'
 import { Route as authOtpImport } from './routes/(auth)/otp'
 import { Route as auth500Import } from './routes/(auth)/500'
+import { Route as AuthenticatedChatChatIdImport } from './routes/_authenticated/chat/$chatId'
 
 // Create Virtual Routes
 
@@ -129,6 +130,12 @@ const auth500Route = auth500Import.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AuthenticatedChatChatIdRoute = AuthenticatedChatChatIdImport.update({
+  id: '/chat/$chatId',
+  path: '/chat/$chatId',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -224,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIndexImport
       parentRoute: typeof AuthenticatedRouteImport
     }
+    '/_authenticated/chat/$chatId': {
+      id: '/_authenticated/chat/$chatId'
+      path: '/chat/$chatId'
+      fullPath: '/chat/$chatId'
+      preLoaderRoute: typeof AuthenticatedChatChatIdImport
+      parentRoute: typeof AuthenticatedRouteImport
+    }
   }
 }
 
@@ -231,10 +245,12 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedChatChatIdRoute: typeof AuthenticatedChatChatIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedChatChatIdRoute: AuthenticatedChatChatIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -253,6 +269,7 @@ export interface FileRoutesByFullPath {
   '/404': typeof errors404LazyRoute
   '/503': typeof errors503LazyRoute
   '/': typeof AuthenticatedIndexRoute
+  '/chat/$chatId': typeof AuthenticatedChatChatIdRoute
 }
 
 export interface FileRoutesByTo {
@@ -267,6 +284,7 @@ export interface FileRoutesByTo {
   '/404': typeof errors404LazyRoute
   '/503': typeof errors503LazyRoute
   '/': typeof AuthenticatedIndexRoute
+  '/chat/$chatId': typeof AuthenticatedChatChatIdRoute
 }
 
 export interface FileRoutesById {
@@ -284,6 +302,7 @@ export interface FileRoutesById {
   '/(errors)/500': typeof errors500LazyRoute
   '/(errors)/503': typeof errors503LazyRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/chat/$chatId': typeof AuthenticatedChatChatIdRoute
 }
 
 export interface FileRouteTypes {
@@ -301,6 +320,7 @@ export interface FileRouteTypes {
     | '/404'
     | '/503'
     | '/'
+    | '/chat/$chatId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/500'
@@ -314,6 +334,7 @@ export interface FileRouteTypes {
     | '/404'
     | '/503'
     | '/'
+    | '/chat/$chatId'
   id:
     | '__root__'
     | '/_authenticated'
@@ -329,6 +350,7 @@ export interface FileRouteTypes {
     | '/(errors)/500'
     | '/(errors)/503'
     | '/_authenticated/'
+    | '/_authenticated/chat/$chatId'
   fileRoutesById: FileRoutesById
 }
 
@@ -389,7 +411,8 @@ export const routeTree = rootRoute
     "/_authenticated": {
       "filePath": "_authenticated/route.tsx",
       "children": [
-        "/_authenticated/"
+        "/_authenticated/",
+        "/_authenticated/chat/$chatId"
       ]
     },
     "/(auth)/500": {
@@ -427,6 +450,10 @@ export const routeTree = rootRoute
     },
     "/_authenticated/": {
       "filePath": "_authenticated/index.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/chat/$chatId": {
+      "filePath": "_authenticated/chat/$chatId.tsx",
       "parent": "/_authenticated"
     }
   }

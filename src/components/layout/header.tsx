@@ -1,6 +1,5 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
-import { Separator } from '@/components/ui/separator'
 import Logo from '../logo'
 
 interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
@@ -31,7 +30,7 @@ export const Header = ({
   return (
     <header
       className={cn(
-        'flex h-16 items-center gap-3 bg-background p-4 sm:gap-4',
+        'flex h-[60px] items-center gap-3 bg-background p-4 sm:gap-4',
         fixed &&
           'header-fixed peer/header fixed z-50 w-[inherit] rounded-md border-b',
         offset > 10 && fixed ? 'shadow' : 'shadow-none',
@@ -42,7 +41,6 @@ export const Header = ({
       <div>
         <Logo />
       </div>
-      <Separator orientation='vertical' className='h-6' />
       {children}
     </header>
   )

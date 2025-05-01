@@ -1,12 +1,12 @@
 import { ReactNode } from 'react'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
+import { useModal } from '@/hooks/use-modal'
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
 } from '../ui/dialog'
-import { useModal } from '@/hooks/use-modal'
 
 type Props = {
   modalKey?: string

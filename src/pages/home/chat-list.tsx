@@ -10,7 +10,7 @@ export default function ChatList() {
   ]
 
   return (
-    <div className='flex flex-col gap-0 min-w-[360px] bg-card'>
+    <div className='flex min-w-[360px] flex-col gap-0 bg-card'>
       {users?.map((usr) => <UserCard key={usr.id} {...usr} />)}
     </div>
   )

@@ -1,7 +1,7 @@
-import { LucideIcon } from "lucide-react"
+import { LucideIcon } from 'lucide-react'
 
 export type User = {
-    id: number
-    username: string
-    avatar: LucideIcon
+  id: number
+  username: string
+  avatar: LucideIcon
 }
